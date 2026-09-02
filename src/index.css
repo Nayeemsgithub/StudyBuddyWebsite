@@ -372,28 +372,36 @@ textarea:focus-visible {
 .sb-hero-container {
   position: relative;
   z-index: 2;
-  max-width: 1240px;
+  max-width: 920px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+}
+
+.sb-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .sb-brand-pills-row {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 .sb-pill-tagline {
   background: var(--color-primary);
   color: var(--color-surface);
-  padding: 5px 12px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -403,28 +411,30 @@ textarea:focus-visible {
 .sb-pill-xanthous {
   background: var(--color-accent);
   color: var(--color-dark-navy);
-  padding: 5px 11px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 800;
 }
 
 .sb-pill-lime {
   background: var(--color-lime);
   color: var(--color-dark-navy);
-  padding: 5px 11px;
+  padding: 6px 14px;
   border-radius: var(--radius-pill);
-  font-size: 11.5px;
+  font-size: 12px;
   font-weight: 800;
 }
 
 .sb-hero-jumbo-title {
-  font-size: clamp(38px, 4.5vw, 56px);
+  font-size: clamp(38px, 5.2vw, 62px);
   font-weight: 800;
   color: var(--color-primary);
-  line-height: 1.1;
-  margin-bottom: 16px;
-  letter-spacing: -1px;
+  line-height: 1.12;
+  margin-bottom: 22px;
+  letter-spacing: -1.2px;
+  text-align: center;
+  max-width: 860px;
 }
 
 .sb-hero-jumbo-title em {
@@ -434,26 +444,28 @@ textarea:focus-visible {
 }
 
 .sb-hero-lead-text {
-  font-size: 15px;
+  font-size: 16.5px;
   color: var(--color-dark-navy);
-  line-height: 1.65;
-  margin-bottom: 24px;
-  max-width: 580px;
+  line-height: 1.75;
+  margin-bottom: 34px;
+  max-width: 740px;
+  text-align: center;
 }
 
 .sb-hero-cta-group {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 16px;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 .btn-gold-brand {
   background: var(--color-accent);
   color: var(--color-dark-navy);
   border: none;
-  padding: 14px 28px;
+  padding: 14px 30px;
   border-radius: var(--radius-md);
   font-size: 15px;
   font-weight: 800;
@@ -476,9 +488,9 @@ textarea:focus-visible {
   background: transparent;
   color: var(--color-primary);
   border: 2px solid var(--color-primary);
-  padding: 13px 24px;
+  padding: 13px 26px;
   border-radius: var(--radius-md);
-  font-size: 14px;
+  font-size: 14.5px;
   font-weight: 800;
   cursor: pointer;
   transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
@@ -494,237 +506,43 @@ textarea:focus-visible {
   transform: translateY(-2px);
 }
 
-/* Course Search Filter Widget */
-.sb-course-finder-widget {
-  background: #ffffff;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: 20px 22px;
-  box-shadow: var(--shadow-md);
-  margin-bottom: 26px;
-}
-
-.sb-finder-head {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 12px;
-  font-weight: 800;
-  color: var(--color-primary);
-  margin-bottom: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.sb-finder-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.sb-finder-select {
-  width: 100%;
-  padding: 11px 14px;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 13.5px;
-  font-family: inherit;
-  color: var(--color-dark-navy);
-  background: var(--color-surface);
-  font-weight: 600;
-  transition: border-color var(--transition-fast);
-}
-
-.sb-finder-select:focus-visible {
-  border-color: var(--color-primary);
-}
-
-.btn-finder-search {
-  width: 100%;
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  padding: 12px 20px;
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-finder-search:hover {
-  background: var(--color-primary-hover);
-  transform: translateY(-1px);
-}
-
 /* Stats Ribbon */
 .sb-hero-metrics-brand {
   display: flex;
   align-items: center;
-  gap: 20px;
-  padding: 16px 20px;
-  background: #ffffff;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  justify-content: center;
+  gap: 32px;
+  padding: 18px 36px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
   width: fit-content;
+  margin: 0 auto;
 }
 
 .sb-metric-box-brand strong {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 800;
   color: var(--color-primary);
   line-height: 1;
   font-variant-numeric: tabular-nums;
+  display: block;
 }
 
 .sb-metric-box-brand span {
-  font-size: 11.5px;
-  font-weight: 600;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--color-dark-navy);
-  margin-top: 3px;
+  margin-top: 4px;
   display: block;
 }
 
 .sb-metric-divider {
-  width: 1px;
-  height: 32px;
+  width: 1.5px;
+  height: 36px;
   background: var(--color-border);
-}
-
-/* Instant Eligibility Calculator Card */
-.sb-hero-calc-card {
-  background: #ffffff;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-xl);
-  padding: 28px;
-  box-shadow: var(--shadow-lg);
-  width: 100%;
-}
-
-.sb-calc-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 20px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid var(--color-border);
-}
-
-.sb-calc-icon {
-  width: 40px;
-  height: 40px;
-  background: var(--color-accent-light);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  color: var(--color-primary);
-}
-
-.sb-calc-header h3 {
-  font-size: 19px;
-  font-weight: 800;
-  color: var(--color-primary);
-}
-
-.sb-calc-header p {
-  font-size: 12.5px;
-  color: var(--color-text-muted);
-}
-
-.sb-calc-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.sb-calc-row {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.sb-calc-row label {
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--color-dark-navy);
-}
-
-.sb-calc-row select {
-  padding: 10px 12px;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: 13.5px;
-  font-family: inherit;
-  color: var(--color-dark-navy);
-  background: var(--color-surface);
-  transition: border-color var(--transition-fast);
-}
-
-.btn-calc-submit {
-  background: var(--color-primary);
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: var(--radius-md);
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  transition: background var(--transition-fast), transform var(--transition-fast);
-  margin-top: 6px;
-}
-
-.btn-calc-submit:hover {
-  background: var(--color-primary-hover);
-  transform: translateY(-2px);
-}
-
-.sb-calc-result {
-  margin-top: 16px;
-  padding: 16px;
-  background: var(--color-surface);
-  border: 1.5px solid var(--color-accent);
-  border-radius: var(--radius-md);
-}
-
-.sb-result-badge {
-  font-size: 11.5px;
-  font-weight: 800;
-  color: var(--color-primary);
-  margin-bottom: 6px;
-}
-
-.sb-calc-result ul {
-  list-style: none;
-  display: grid;
-  gap: 5px;
-  margin-bottom: 12px;
-}
-
-.sb-calc-result li {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: var(--color-dark-navy);
-}
-
-.btn-result-apply {
-  width: 100%;
-  background: var(--color-accent);
-  color: var(--color-dark-navy);
-  border: none;
-  padding: 9px;
-  border-radius: var(--radius-sm);
-  font-size: 12.5px;
-  font-weight: 800;
-  cursor: pointer;
 }
 
 /* ==========================================================================
@@ -2015,14 +1833,6 @@ textarea:focus-visible {
    RESPONSIVE DESIGN (Tablets & Mobile Viewports)
    ========================================================================== */
 @media (max-width: 1024px) {
-  .sb-hero-container {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-  .sb-hero-calc-card {
-    max-width: 580px;
-    margin: 0 auto;
-  }
   .sb-bento-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2051,16 +1861,6 @@ textarea:focus-visible {
 }
 
 @media (max-width: 768px) {
-  .sb-top-bar {
-    padding: 6px 16px;
-    font-size: 11px;
-  }
-  .sb-top-locations {
-    display: none;
-  }
-  .sb-top-bar-inner {
-    justify-content: center;
-  }
   .sb-desktop-nav {
     display: none;
   }
@@ -2085,10 +1885,7 @@ textarea:focus-visible {
     line-height: 1.15;
   }
   .sb-hero-lead-text {
-    font-size: 14px;
-  }
-  .sb-finder-grid {
-    grid-template-columns: 1fr;
+    font-size: 14.5px;
   }
   .sb-hero-metrics-brand {
     width: 100%;

@@ -103,22 +103,6 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-  // Course Finder Filter State
-  const [searchFilters, setSearchFilters] = useState({
-    country: 'Malaysia',
-    degreeLevel: 'Bachelor',
-    subject: 'Computer Science & AI',
-  });
-
-  // Quick Eligibility Checker State
-  const [calcData, setCalcData] = useState({
-    sscGpa: '5.0',
-    hscGpa: '5.0',
-    targetDegree: 'Bachelor',
-    budgetRange: '$3,000 - $6,000 / year',
-  });
-  const [calcResult, setCalcResult] = useState(null);
-
   // Check MERN Backend API Health on Load
   useEffect(() => {
     fetch('http://localhost:5000/api/health')
@@ -134,46 +118,6 @@ export default function App() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleCalcChange = (e) => {
-    const { name, value } = e.target;
-    setCalcData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setSearchFilters((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const handleRunSearch = (e) => {
-    e.preventDefault();
-    const destKeyMap = {
-      Malaysia: 'malaysia',
-      Australia: 'australia',
-      China: 'china',
-      'South Korea': 'south-korea',
-      'New Zealand': 'new-zealand',
-      'Europe (Schengen)': 'europe',
-      'United Kingdom': 'uk',
-    };
-    const targetKey = destKeyMap[searchFilters.country] || 'malaysia';
-    setActiveCountryKey(targetKey);
-    const el = document.getElementById('study-destinations');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleCalculateEligibility = (e) => {
-    e.preventDefault();
-    setCalcResult({
-      matches: [
-        'Malaysia (100% Eligible — Direct Bachelor Admission)',
-        'China (CSC & University Scholarship Eligible)',
-        'Europe (Tuition-Free & Low Cost Options)',
-        'Australia (Fast-Track Diploma / Foundation Track)',
-      ],
-      note: 'Your profile matches 4 prime destination pathways! Talk to our senior counselor for exact university shortlist.',
-    });
   };
 
   // MERN Stack API Counseling Request Submission
@@ -894,26 +838,6 @@ export default function App() {
 
   return (
     <div id="app-root">
-      {/* Sleek Global Utility Bar */}
-      <div className="sb-top-bar" role="region" aria-label="Quick Branch and Contact Info">
-        <div className="sb-top-bar-inner">
-          <div className="sb-top-locations">
-            <span className="sb-loc-pill"><span aria-hidden="true">📍</span> Dhaka (Banani)</span>
-            <span className="sb-loc-pill"><span aria-hidden="true">📍</span> Chattogram (Chawkbazar)</span>
-            <span className="sb-loc-pill"><span aria-hidden="true">📍</span> Kuala Lumpur</span>
-          </div>
-
-          <div className="sb-top-actions">
-            <span className="sb-intake-badge">
-              <span className="sb-live-pulse-dot" aria-hidden="true"></span> Fall 2026 Admissions Open
-            </span>
-            <a href="tel:+8801675516856" className="sb-top-phone" aria-label="Call direct helpline +88 01675 516 856">
-              <span aria-hidden="true">📞</span> Helpline: +88 01675 516 856
-            </a>
-          </div>
-        </div>
-      </div>
-
       {/* Modern Floating Header */}
       <header className="sb-header">
         <div className="sb-header-inner">
@@ -1021,7 +945,6 @@ export default function App() {
           </div>
 
           <div className="sb-hero-container">
-            {/* Left Column: Brand Copy & Course Finder Engine */}
             <div className="sb-hero-content">
               <div className="sb-brand-pills-row">
                 <span className="sb-pill-tagline">Study Buddy Official</span>
@@ -1036,67 +959,6 @@ export default function App() {
               <p className="sb-hero-lead-text">
                 <strong>Learn. Grow. Go Global.</strong> Study Buddy is dedicated to empowering students who dream of studying abroad by providing guidance, resources, and mentorship to make international education accessible, transparent, and seamless.
               </p>
-
-              {/* 21st.dev Course & University Finder Search Bar */}
-              <form onSubmit={handleRunSearch} className="sb-course-finder-widget" aria-label="Course and University Search Filter">
-                <div className="sb-finder-head">
-                  <span aria-hidden="true">🔍</span>
-                  <span>Fast Course &amp; University Finder</span>
-                </div>
-                <div className="sb-finder-grid">
-                  <label htmlFor="finder-country" className="sr-only" style={{ display: 'none' }}>Target Country</label>
-                  <select
-                    id="finder-country"
-                    name="country"
-                    className="sb-finder-select"
-                    value={searchFilters.country}
-                    onChange={handleFilterChange}
-                    aria-label="Select Target Country"
-                  >
-                    <option value="Malaysia">🇲🇾 Malaysia</option>
-                    <option value="Australia">🇦🇺 Australia</option>
-                    <option value="China">🇨🇳 China</option>
-                    <option value="South Korea">🇰🇷 South Korea</option>
-                    <option value="New Zealand">🇳🇿 New Zealand</option>
-                    <option value="Europe (Schengen)">🇪🇺 Europe (Schengen)</option>
-                    <option value="United Kingdom">🇬🇧 United Kingdom</option>
-                  </select>
-
-                  <label htmlFor="finder-degree" className="sr-only" style={{ display: 'none' }}>Target Degree</label>
-                  <select
-                    id="finder-degree"
-                    name="degreeLevel"
-                    className="sb-finder-select"
-                    value={searchFilters.degreeLevel}
-                    onChange={handleFilterChange}
-                    aria-label="Select Degree Level"
-                  >
-                    <option value="Bachelor">Bachelor Degree</option>
-                    <option value="Master">Master’s / MBA</option>
-                    <option value="Foundation">Diploma / Foundation</option>
-                  </select>
-
-                  <label htmlFor="finder-subject" className="sr-only" style={{ display: 'none' }}>Subject Area</label>
-                  <select
-                    id="finder-subject"
-                    name="subject"
-                    className="sb-finder-select"
-                    value={searchFilters.subject}
-                    onChange={handleFilterChange}
-                    aria-label="Select Subject Area"
-                  >
-                    <option value="Computer Science & AI">Computer Science &amp; AI</option>
-                    <option value="Business & Management">Business &amp; Management</option>
-                    <option value="Engineering & Tech">Engineering &amp; Tech</option>
-                    <option value="Medicine & MBBS">Medicine (MBBS)</option>
-                    <option value="Public Health & Nursing">Public Health &amp; Nursing</option>
-                  </select>
-                </div>
-
-                <button type="submit" className="btn-finder-search">
-                  Search Matching University Pathways →
-                </button>
-              </form>
 
               <div className="sb-hero-cta-group">
                 <button className="btn-gold-brand" type="button" onClick={() => scrollToBooking()}>
@@ -1129,85 +991,6 @@ export default function App() {
                   <span>Partner Universities</span>
                 </div>
               </div>
-            </div>
-
-            {/* Right Column: 30-Second Instant Eligibility Checker Card */}
-            <div className="sb-hero-calc-card">
-              <div className="sb-calc-header">
-                <div className="sb-calc-icon" aria-hidden="true">⚡</div>
-                <div>
-                  <h3>Instant Eligibility Checker</h3>
-                  <p>Check matching university pathways in 30 seconds</p>
-                </div>
-              </div>
-
-              <form onSubmit={handleCalculateEligibility} className="sb-calc-form">
-                <div className="sb-calc-row">
-                  <label htmlFor="calc-gpa">HSC / A-Level Result</label>
-                  <select
-                    id="calc-gpa"
-                    name="hscGpa"
-                    value={calcData.hscGpa}
-                    onChange={handleCalcChange}
-                  >
-                    <option value="5.0">GPA 5.00 / A*A*A (High Scholarship)</option>
-                    <option value="4.5">GPA 4.50 - 4.99 (Merit Eligible)</option>
-                    <option value="4.0">GPA 4.00 - 4.49 (Direct Admission)</option>
-                    <option value="3.5">GPA 3.50 - 3.99 (Standard Pathway)</option>
-                    <option value="3.0">GPA 3.00 - 3.49 (Foundation Track)</option>
-                  </select>
-                </div>
-
-                <div className="sb-calc-row">
-                  <label htmlFor="calc-degree">Target Degree Level</label>
-                  <select
-                    id="calc-degree"
-                    name="targetDegree"
-                    value={calcData.targetDegree}
-                    onChange={handleCalcChange}
-                  >
-                    <option value="Bachelor">Bachelor Degree (Undergraduate)</option>
-                    <option value="Master">Master Degree (Postgraduate)</option>
-                    <option value="Foundation">Foundation / Diploma Track</option>
-                  </select>
-                </div>
-
-                <div className="sb-calc-row">
-                  <label htmlFor="calc-budget">Annual Tuition Budget Preference</label>
-                  <select
-                    id="calc-budget"
-                    name="budgetRange"
-                    value={calcData.budgetRange}
-                    onChange={handleCalcChange}
-                  >
-                    <option value="$3,000 - $6,000 / year">$3,000 - $6,000 / year (Budget Friendly)</option>
-                    <option value="$5,000 - $10,000 / year">$5,000 - $10,000 / year (Moderate)</option>
-                    <option value="$15,000+ / year">$15,000+ / year (Western Tier)</option>
-                  </select>
-                </div>
-
-                <button type="submit" className="btn-calc-submit">
-                  Analyze My Eligibility →
-                </button>
-              </form>
-
-              {calcResult && (
-                <div className="sb-calc-result fade-in" role="region" aria-live="polite">
-                  <div className="sb-result-badge">✨ Matching Pathways Found</div>
-                  <ul>
-                    {calcResult.matches.map((m, idx) => (
-                      <li key={idx}>✓ {m}</li>
-                    ))}
-                  </ul>
-                  <button
-                    type="button"
-                    className="btn-result-apply"
-                    onClick={() => scrollToBooking()}
-                  >
-                    Request Official Shortlist →
-                  </button>
-                </div>
-              )}
             </div>
           </div>
         </section>
