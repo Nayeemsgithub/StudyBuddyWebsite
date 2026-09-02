@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "21st-dev": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@21st-dev/magic-mcp"]
+    },
+    "playwright": {
+      "command": "cmd",
+      "args": ["/c", "npx", "-y", "@playwright/mcp@latest"]
+    }
+  }
+}
