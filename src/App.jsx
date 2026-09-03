@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Lenis from 'lenis';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion';
 
 // Register GSAP Plugins
 gsap.registerPlugin(ScrollTrigger);
@@ -101,6 +101,15 @@ export default function App() {
   const [openFaqIndex, setOpenFaqIndex] = useState(0);
   const [apiStatus, setApiStatus] = useState('Connecting to MERN Backend…');
   const [currentBgIndex, setCurrentBgIndex] = useState(0);
+  const [pathwayFilter, setPathwayFilter] = useState('all');
+
+  // Scroll Progress Physics
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
 
   // Background Slideshow Timer
   useEffect(() => {
@@ -915,6 +924,9 @@ export default function App() {
 
   return (
     <div id="app-root">
+      {/* Interactive Global Scroll Progress Bar */}
+      <motion.div className="sb-scroll-progress-bar" style={{ scaleX }} />
+
       {/* Modern Floating Header */}
       <header className="sb-header">
         <div className="sb-header-inner">
@@ -944,7 +956,9 @@ export default function App() {
           </nav>
 
           <div className="sb-header-cta-group">
-            <a
+            <motion.a
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.96 }}
               href="https://wa.me/8801675516856"
               target="_blank"
               rel="noopener noreferrer"
@@ -952,14 +966,16 @@ export default function App() {
               aria-label="Chat with Study Buddy counselors on WhatsApp"
             >
               <span aria-hidden="true">💬</span> WhatsApp
-            </a>
-            <button
+            </motion.a>
+            <motion.button
+              whileHover={{ scale: 1.04, y: -1 }}
+              whileTap={{ scale: 0.96 }}
               type="button"
               className="btn-header-primary"
               onClick={() => scrollToBooking()}
             >
               Book Free Consultation →
-            </button>
+            </motion.button>
             <button
               type="button"
               className="sb-mobile-menu-btn"
@@ -1021,6 +1037,24 @@ export default function App() {
             </div>
           </div>
 
+          {/* Floating Motion Badges */}
+          <motion.div
+            className="sb-hero-float-badge sb-float-badge-1"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut' }}
+          >
+            <span className="sb-float-badge-icon" aria-hidden="true">🎓</span>
+            <span>Direct University Partner</span>
+          </motion.div>
+          <motion.div
+            className="sb-hero-float-badge sb-float-badge-2"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ repeat: Infinity, duration: 5, ease: 'easeInOut', delay: 0.5 }}
+          >
+            <span className="sb-float-badge-icon" aria-hidden="true">⚡</span>
+            <span>Fast-Track Offer Letters</span>
+          </motion.div>
+
           <div className="sb-hero-container">
             <div className="sb-hero-content">
               <div className="sb-brand-pills-row">
@@ -1038,17 +1072,25 @@ export default function App() {
               </p>
 
               <div className="sb-hero-cta-group">
-                <button className="btn-gold-brand" type="button" onClick={() => scrollToBooking()}>
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="btn-gold-brand"
+                  type="button"
+                  onClick={() => scrollToBooking()}
+                >
                   Book 1:1 Advisory Session →
-                </button>
-                <a
+                </motion.button>
+                <motion.a
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
                   href="https://wa.me/8801675516856"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline-brand"
                 >
                   Fast Track via WhatsApp
-                </a>
+                </motion.a>
               </div>
 
               {/* High-Contrast Trust Metrics */}
@@ -1143,68 +1185,128 @@ export default function App() {
               </p>
             </div>
 
+            {/* Interactive Student Pathway Matcher */}
+            <div className="sb-pathway-explorer">
+              <div className="sb-explorer-title">
+                <span aria-hidden="true">🧭</span>
+                <span>Interactive Student Pathway Matcher</span>
+              </div>
+              <div className="sb-explorer-filters" role="group" aria-label="Filter Destinations by Priority">
+                <button
+                  type="button"
+                  className={`sb-explorer-btn ${pathwayFilter === 'all' ? 'active' : ''}`}
+                  onClick={() => setPathwayFilter('all')}
+                >
+                  🌐 All 7 Global Pathways
+                </button>
+                <button
+                  type="button"
+                  className={`sb-explorer-btn ${pathwayFilter === 'scholarship' ? 'active' : ''}`}
+                  onClick={() => setPathwayFilter('scholarship')}
+                >
+                  🎓 High Scholarships (20%–50%)
+                </button>
+                <button
+                  type="button"
+                  className={`sb-explorer-btn ${pathwayFilter === 'budget' ? 'active' : ''}`}
+                  onClick={() => setPathwayFilter('budget')}
+                >
+                  💰 Budget Friendly ($3k–$6k/yr)
+                </button>
+                <button
+                  type="button"
+                  className={`sb-explorer-btn ${pathwayFilter === 'work' ? 'active' : ''}`}
+                  onClick={() => setPathwayFilter('work')}
+                >
+                  💼 2–4 Yr Post-Study Work
+                </button>
+              </div>
+            </div>
+
             {/* Country Filter Pills Switcher */}
             <div className="sb-country-pills-bar" role="tablist" aria-label="Destination Countries">
-              {destinations.map((dest) => {
-                const countryInfo = countryDetails[dest.id] || {};
-                const isActive = activeCountryKey === dest.id;
-                return (
-                  <button
-                    key={dest.id}
-                    type="button"
-                    role="tab"
-                    aria-selected={isActive}
-                    className={`sb-country-pill ${isActive ? 'active' : ''}`}
-                    onClick={() => {
-                      setActiveCountryKey(dest.id);
-                    }}
-                  >
-                    <span className="sb-country-flag" aria-hidden="true">{countryInfo.flag || '🌐'}</span>
-                    <span>{dest.title}</span>
-                    {isActive && <span className="sb-pill-dot" aria-hidden="true"></span>}
-                  </button>
-                );
-              })}
+              {destinations
+                .filter((dest) => {
+                  if (pathwayFilter === 'all') return true;
+                  if (pathwayFilter === 'scholarship') return ['malaysia', 'china', 'new-zealand'].includes(dest.id);
+                  if (pathwayFilter === 'budget') return ['malaysia', 'china', 'europe'].includes(dest.id);
+                  if (pathwayFilter === 'work') return ['australia', 'uk', 'new-zealand', 'europe'].includes(dest.id);
+                  return true;
+                })
+                .map((dest) => {
+                  const countryInfo = countryDetails[dest.id] || {};
+                  const isActive = activeCountryKey === dest.id;
+                  return (
+                    <motion.button
+                      layout
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      key={dest.id}
+                      type="button"
+                      role="tab"
+                      aria-selected={isActive}
+                      className={`sb-country-pill ${isActive ? 'active' : ''}`}
+                      onClick={() => {
+                        setActiveCountryKey(dest.id);
+                      }}
+                    >
+                      <span className="sb-country-flag" aria-hidden="true">{countryInfo.flag || '🌐'}</span>
+                      <span>{dest.title}</span>
+                      {isActive && <span className="sb-pill-dot" aria-hidden="true"></span>}
+                    </motion.button>
+                  );
+                })}
             </div>
 
             {/* 7 Destination Cards Grid */}
-            <div className="sb-dest-grid">
-              {destinations.map((dest) => {
-                const isActive = activeCountryKey === dest.id;
-                return (
-                  <button
-                    key={dest.id}
-                    className={`sb-dest-card ${isActive ? 'selected' : ''}`}
-                    type="button"
-                    onClick={() => {
-                      setActiveCountryKey(dest.id);
-                      const el = document.getElementById('country-detail-hub');
-                      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }}
-                  >
-                    <div className="sb-card-img-wrap">
-                      <img
-                        className="sb-dest-img"
-                        src={dest.image}
-                        alt={`Study in ${dest.title}`}
-                        loading="lazy"
-                        width="400"
-                        height="200"
-                      />
-                      <span className="sb-dest-badge">{dest.badge}</span>
-                    </div>
-                    <div className="sb-dest-body">
-                      <h3>{dest.title}</h3>
-                      <p>{dest.description}</p>
-                      <div className="sb-dest-stats">
-                        <span className="sb-stat-tag">{dest.acceptance}</span>
-                        <span className="sb-stat-tag gold">{dest.tuition}</span>
+            <motion.div layout className="sb-dest-grid">
+              {destinations
+                .filter((dest) => {
+                  if (pathwayFilter === 'all') return true;
+                  if (pathwayFilter === 'scholarship') return ['malaysia', 'china', 'new-zealand'].includes(dest.id);
+                  if (pathwayFilter === 'budget') return ['malaysia', 'china', 'europe'].includes(dest.id);
+                  if (pathwayFilter === 'work') return ['australia', 'uk', 'new-zealand', 'europe'].includes(dest.id);
+                  return true;
+                })
+                .map((dest) => {
+                  const isActive = activeCountryKey === dest.id;
+                  return (
+                    <motion.button
+                      layout
+                      whileHover={{ scale: 1.03, y: -4 }}
+                      whileTap={{ scale: 0.97 }}
+                      key={dest.id}
+                      className={`sb-dest-card ${isActive ? 'selected' : ''}`}
+                      type="button"
+                      onClick={() => {
+                        setActiveCountryKey(dest.id);
+                        const el = document.getElementById('country-detail-hub');
+                        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                      }}
+                    >
+                      <div className="sb-card-img-wrap">
+                        <img
+                          className="sb-dest-img"
+                          src={dest.image}
+                          alt={`Study in ${dest.title}`}
+                          loading="lazy"
+                          width="400"
+                          height="200"
+                        />
+                        <span className="sb-dest-badge">{dest.badge}</span>
                       </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+                      <div className="sb-dest-body">
+                        <h3>{dest.title}</h3>
+                        <p>{dest.description}</p>
+                        <div className="sb-dest-stats">
+                          <span className="sb-stat-tag">{dest.acceptance}</span>
+                          <span className="sb-stat-tag gold">{dest.tuition}</span>
+                        </div>
+                      </div>
+                    </motion.button>
+                  );
+                })}
+            </motion.div>
 
             {/* SMART BLUEPRINT HUB PANEL */}
             <motion.div

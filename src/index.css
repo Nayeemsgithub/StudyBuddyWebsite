@@ -539,6 +539,120 @@ textarea:focus-visible {
   display: block;
 }
 
+/* Scroll Progress Indicator Bar */
+.sb-scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+  background: linear-gradient(90deg, var(--color-accent) 0%, var(--color-primary) 50%, var(--color-lime) 100%);
+  transform-origin: 0%;
+  z-index: 10000;
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(252, 185, 64, 0.5);
+}
+
+/* Floating Hero Sticker Badges */
+.sb-hero-float-badge {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--color-primary);
+  box-shadow: 0 8px 24px rgba(45, 45, 146, 0.12);
+  pointer-events: none;
+  z-index: 2;
+  transition: border-color var(--transition-fast);
+}
+
+.sb-float-badge-1 {
+  top: 18%;
+  left: 4%;
+}
+
+.sb-float-badge-2 {
+  top: 24%;
+  right: 4%;
+}
+
+.sb-float-badge-icon {
+  font-size: 16px;
+}
+
+@media (max-width: 1024px) {
+  .sb-hero-float-badge {
+    display: none;
+  }
+}
+
+/* Interactive Pathway Explorer */
+.sb-pathway-explorer {
+  margin: 28px 0 36px;
+  padding: 24px;
+  background: #ffffff;
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+}
+
+.sb-explorer-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.sb-explorer-filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.sb-explorer-btn {
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-border);
+  color: var(--color-dark-navy);
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sb-explorer-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+.sb-explorer-btn.active {
+  background: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 14px var(--color-primary-glow);
+}
+
 .sb-metric-divider {
   width: 1.5px;
   height: 36px;
