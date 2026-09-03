@@ -1,4 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Register GSAP Plugins
+gsap.registerPlugin(ScrollTrigger);
 
 function AutoScrollingMarquee({ items }) {
   const scrollerRef = useRef(null);
@@ -101,6 +108,76 @@ export default function App() {
       setCurrentBgIndex((prev) => (prev + 1) % campusHeroBackgrounds.length);
     }, 5500);
     return () => clearInterval(timer);
+  }, []);
+
+  // Initialize Lenis Smooth Scroll + GSAP ScrollTrigger Integration
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 0.95,
+      touchMultiplier: 1.5,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    const updateLenis = (time) => {
+      lenis.raf(time * 1000);
+    };
+
+    gsap.ticker.add(updateLenis);
+    gsap.ticker.lagSmoothing(0);
+
+    const ctx = gsap.context(() => {
+      // Hero Entrance Timeline
+      const heroTl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      heroTl
+        .from('.sb-brand-pills-row', { opacity: 0, y: -15, duration: 0.7, delay: 0.1 })
+        .from('.sb-hero-jumbo-title', { opacity: 0, y: 30, duration: 0.9 }, '-=0.4')
+        .from('.sb-hero-lead-text', { opacity: 0, y: 20, duration: 0.8 }, '-=0.5')
+        .from('.sb-hero-cta-group', { opacity: 0, y: 20, duration: 0.7 }, '-=0.5')
+        .from('.sb-hero-metrics-brand', { opacity: 0, scale: 0.95, y: 20, duration: 0.7 }, '-=0.4');
+
+      // ScrollTrigger Staggered Reveals for Sections
+      const revealSections = [
+        { selector: '.sb-why-bento .sb-section-head', y: 30 },
+        { selector: '.sb-bento-grid > div', y: 40, stagger: 0.12 },
+        { selector: '.sb-destinations-brand .sb-section-head-center', y: 30 },
+        { selector: '.sb-country-pills-bar', y: 20 },
+        { selector: '.sb-dest-grid .sb-dest-card', y: 35, stagger: 0.08 },
+        { selector: '.sb-country-hub-panel', y: 40 },
+        { selector: '.sb-roadmap-grid .sb-roadmap-card', y: 35, stagger: 0.1 },
+        { selector: '.sb-testi-grid-brand .sb-testi-card-brand', y: 35, stagger: 0.12 },
+        { selector: '.sb-branches-grid .sb-branch-card', y: 35, stagger: 0.12 },
+        { selector: '.sb-faq-list .sb-faq-item', y: 25, stagger: 0.08 },
+        { selector: '.sb-booking-layout-brand', y: 40 },
+      ];
+
+      revealSections.forEach(({ selector, y, stagger }) => {
+        const elements = gsap.utils.toArray(selector);
+        if (elements.length > 0) {
+          gsap.from(elements, {
+            scrollTrigger: {
+              trigger: elements[0],
+              start: 'top 88%',
+              toggleActions: 'play none none none',
+            },
+            opacity: 0,
+            y: y || 30,
+            duration: 0.8,
+            stagger: stagger || 0,
+            ease: 'power2.out',
+          });
+        }
+      });
+    });
+
+    return () => {
+      ctx.revert();
+      gsap.ticker.remove(updateLenis);
+      lenis.destroy();
+    };
   }, []);
 
   // Check MERN Backend API Health on Load
@@ -1130,7 +1207,14 @@ export default function App() {
             </div>
 
             {/* SMART BLUEPRINT HUB PANEL */}
-            <div className="sb-country-hub-panel" id="country-detail-hub">
+            <motion.div
+              className="sb-country-hub-panel"
+              id="country-detail-hub"
+              key={activeCountryKey}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: 'easeOut' }}
+            >
               <div className="sb-hub-header">
                 <div className="sb-hub-title-group">
                   <span className="sb-hub-big-flag" aria-hidden="true">{currentCountry.flag}</span>
@@ -1189,87 +1273,97 @@ export default function App() {
                 </button>
               </div>
 
-              {/* Sub-Tab Content Area */}
+              {/* Sub-Tab Content Area with Framer Motion AnimatePresence */}
               <div className="sb-subtab-content">
-                {activeSubTab === 'overview' && (
-                  <div className="sb-tab-pane fade-in">
-                    <div className="sb-overview-box">
-                      <h4><span aria-hidden="true">🏛️</span> Overview &amp; Academic Standing</h4>
-                      <p>{currentCountry.overview}</p>
-                    </div>
-                    <h4 className="sb-pane-subtitle"><span aria-hidden="true">🌟</span> Lifestyle &amp; Cultural Environment</h4>
-                    <div className="sb-lifestyle-grid">
-                      {currentCountry.lifestyle.map((item, idx) => (
-                        <div key={idx} className="sb-lifestyle-card">
-                          <h5>{item.title}</h5>
-                          <p>{item.desc}</p>
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={`${activeCountryKey}-${activeSubTab}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: 'easeOut' }}
+                  >
+                    {activeSubTab === 'overview' && (
+                      <div className="sb-tab-pane">
+                        <div className="sb-overview-box">
+                          <h4><span aria-hidden="true">🏛️</span> Overview &amp; Academic Standing</h4>
+                          <p>{currentCountry.overview}</p>
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {activeSubTab === 'accommodation' && (
-                  <div className="sb-tab-pane fade-in">
-                    <h4 className="sb-pane-subtitle"><span aria-hidden="true">🏡</span> Housing &amp; Student Accommodation Options</h4>
-                    <div className="sb-acc-grid">
-                      {currentCountry.accommodation.map((acc, idx) => (
-                        <div key={idx} className="sb-acc-card">
-                          <div className="sb-acc-icon" aria-hidden="true">🏘️</div>
-                          <h5>{acc.type}</h5>
-                          <p>{acc.detail}</p>
+                        <h4 className="sb-pane-subtitle"><span aria-hidden="true">🌟</span> Lifestyle &amp; Cultural Environment</h4>
+                        <div className="sb-lifestyle-grid">
+                          {currentCountry.lifestyle.map((item, idx) => (
+                            <div key={idx} className="sb-lifestyle-card">
+                              <h5>{item.title}</h5>
+                              <p>{item.desc}</p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
-
-                {activeSubTab === 'workRights' && (
-                  <div className="sb-tab-pane fade-in">
-                    <h4 className="sb-pane-subtitle"><span aria-hidden="true">💼</span> Student Work Rights &amp; Post-Study Opportunities</h4>
-                    <div className="sb-work-grid">
-                      <div className="sb-work-card">
-                        <div className="sb-work-badge">Term-Time Employment</div>
-                        <p>{currentCountry.workRights.termTime}</p>
                       </div>
-                      {currentCountry.workRights.vacation && (
-                        <div className="sb-work-card">
-                          <div className="sb-work-badge">Vacation &amp; Semester Breaks</div>
-                          <p>{currentCountry.workRights.vacation}</p>
-                        </div>
-                      )}
-                      {currentCountry.workRights.sectors && (
-                        <div className="sb-work-card">
-                          <div className="sb-work-badge">Permitted Work Sectors</div>
-                          <p>{currentCountry.workRights.sectors}</p>
-                        </div>
-                      )}
-                      {currentCountry.workRights.psw && (
-                        <div className="sb-work-card highlight">
-                          <div className="sb-work-badge gold">Post-Study Work Visa (PSW)</div>
-                          <p>{currentCountry.workRights.psw}</p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                )}
+                    )}
 
-                {activeSubTab === 'workflow' && (
-                  <div className="sb-tab-pane fade-in">
-                    <h4 className="sb-pane-subtitle"><span aria-hidden="true">🗺️</span> Step-by-Step Admission &amp; Visa Workflow</h4>
-                    <div className="sb-workflow-timeline">
-                      {currentCountry.workflow.map((st) => (
-                        <div key={st.step} className="sb-workflow-step">
-                          <div className="sb-step-circle">{st.step}</div>
-                          <div className="sb-step-body">
-                            <h5>{st.title}</h5>
-                            <p>{st.text}</p>
-                          </div>
+                    {activeSubTab === 'accommodation' && (
+                      <div className="sb-tab-pane">
+                        <h4 className="sb-pane-subtitle"><span aria-hidden="true">🏡</span> Housing &amp; Student Accommodation Options</h4>
+                        <div className="sb-acc-grid">
+                          {currentCountry.accommodation.map((acc, idx) => (
+                            <div key={idx} className="sb-acc-card">
+                              <div className="sb-acc-icon" aria-hidden="true">🏘️</div>
+                              <h5>{acc.type}</h5>
+                              <p>{acc.detail}</p>
+                            </div>
+                          ))}
                         </div>
-                      ))}
-                    </div>
-                  </div>
-                )}
+                      </div>
+                    )}
+
+                    {activeSubTab === 'workRights' && (
+                      <div className="sb-tab-pane">
+                        <h4 className="sb-pane-subtitle"><span aria-hidden="true">💼</span> Student Work Rights &amp; Post-Study Opportunities</h4>
+                        <div className="sb-work-grid">
+                          <div className="sb-work-card">
+                            <div className="sb-work-badge">Term-Time Employment</div>
+                            <p>{currentCountry.workRights.termTime}</p>
+                          </div>
+                          {currentCountry.workRights.vacation && (
+                            <div className="sb-work-card">
+                              <div className="sb-work-badge">Vacation &amp; Semester Breaks</div>
+                              <p>{currentCountry.workRights.vacation}</p>
+                            </div>
+                          )}
+                          {currentCountry.workRights.sectors && (
+                            <div className="sb-work-card">
+                              <div className="sb-work-badge">Permitted Work Sectors</div>
+                              <p>{currentCountry.workRights.sectors}</p>
+                            </div>
+                          )}
+                          {currentCountry.workRights.psw && (
+                            <div className="sb-work-card highlight">
+                              <div className="sb-work-badge gold">Post-Study Work Visa (PSW)</div>
+                              <p>{currentCountry.workRights.psw}</p>
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    )}
+
+                    {activeSubTab === 'workflow' && (
+                      <div className="sb-tab-pane">
+                        <h4 className="sb-pane-subtitle"><span aria-hidden="true">🗺️</span> Step-by-Step Admission &amp; Visa Workflow</h4>
+                        <div className="sb-workflow-timeline">
+                          {currentCountry.workflow.map((st) => (
+                            <div key={st.step} className="sb-workflow-step">
+                              <div className="sb-step-circle">{st.step}</div>
+                              <div className="sb-step-info">
+                                <h5>{st.title}</h5>
+                                <p>{st.desc}</p>
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
               <div className="sb-hub-footer">
@@ -1284,7 +1378,7 @@ export default function App() {
                   Book {currentCountry.title} Advisory Session →
                 </button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
