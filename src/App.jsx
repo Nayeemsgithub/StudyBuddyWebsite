@@ -905,9 +905,9 @@ export default function App() {
       city: 'Chattogram Headquarters',
       tag: 'Official Counseling Office',
       address: '2nd Floor, 85/A, Saleh Nur Bhaban, Chatteshwari Road, Chattogram, Chattogram 4203',
-      phone: '+88 01675 516 856',
+      phone: '+8801807578888',
       email: 'info@mystudybuddy.com',
-      hours: 'Sat - Thu: 10:00 AM - 7:00 PM',
+      hours: 'Saturday – Thursday: 11:00 AM – 7:00 PM',
       image: '/chattogram-office.webp',
     },
   ];
@@ -974,7 +974,7 @@ export default function App() {
             <motion.a
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.96 }}
-              href="https://wa.me/8801675516856"
+              href="https://wa.me/8801807578888"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-header-whatsapp"
@@ -1099,7 +1099,7 @@ export default function App() {
                 <motion.a
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.96 }}
-                  href="https://wa.me/8801675516856"
+                  href="https://wa.me/8801807578888"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline-brand"
@@ -1611,11 +1611,11 @@ export default function App() {
                 <div className="sb-office-meta-list">
                   <div className="sb-office-meta-item">
                     <span aria-hidden="true">📞</span>
-                    <span><strong>Hotline:</strong> +88 01675 516 856</span>
+                    <span><strong>Hotline:</strong> +8801807578888</span>
                   </div>
                   <div className="sb-office-meta-item">
                     <span aria-hidden="true">💬</span>
-                    <span><strong>WhatsApp:</strong> +88 01675 516 856</span>
+                    <span><strong>WhatsApp:</strong> +8801807578888</span>
                   </div>
                   <div className="sb-office-meta-item">
                     <span aria-hidden="true">✉️</span>
@@ -1623,13 +1623,13 @@ export default function App() {
                   </div>
                   <div className="sb-office-meta-item">
                     <span aria-hidden="true">⏰</span>
-                    <span><strong>Hours:</strong> Saturday – Thursday: 10:00 AM – 7:00 PM</span>
+                    <span><strong>Hours:</strong> Saturday – Thursday: 11:00 AM – 7:00 PM</span>
                   </div>
                 </div>
 
                 <div className="sb-office-action-row">
                   <a
-                    href="https://wa.me/8801675516856"
+                    href="https://wa.me/8801807578888"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-gold-brand"
@@ -1777,7 +1777,7 @@ export default function App() {
 
                   {submitted && (
                     <div className="toast-success-brand" role="status" aria-live="polite">
-                      🎉 Thank you, {formData.name}! Your request has been securely recorded. Our senior counselor will connect with you on WhatsApp (+88 01675 516 856) shortly.
+                      🎉 Thank you, {formData.name}! Your request has been securely recorded. Our senior counselor will connect with you on WhatsApp (+8801807578888) shortly.
                     </div>
                   )}
 
@@ -1807,15 +1807,15 @@ export default function App() {
                 </div>
                 <div className="sb-chat-actions">
                   <a
-                    href="https://wa.me/8801675516856"
+                    href="https://wa.me/8801807578888"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-whatsapp-full"
                     aria-label="Chat with Study Buddy on WhatsApp"
                   >
-                    <span aria-hidden="true">💬</span> Chat on WhatsApp (+88 01675 516 856)
+                    <span aria-hidden="true">💬</span> Chat on WhatsApp (+8801807578888)
                   </a>
-                  <a href="tel:+8801675516856" className="btn-call-full" aria-label="Call Study Buddy hotline">
+                  <a href="tel:+8801807578888" className="btn-call-full" aria-label="Call Study Buddy hotline">
                     <span aria-hidden="true">📞</span> Call Hotline Now
                   </a>
                 </div>
@@ -1862,8 +1862,8 @@ export default function App() {
             </div>
             <div className="sb-footer-col">
               <h5>Direct Contact</h5>
-              <a href="tel:+8801675516856">Hotline: +88 01675 516 856</a>
-              <a href="https://wa.me/8801675516856" target="_blank" rel="noopener noreferrer">WhatsApp: +88 01675 516 856</a>
+              <a href="tel:+8801807578888">Hotline: +8801807578888</a>
+              <a href="https://wa.me/8801807578888" target="_blank" rel="noopener noreferrer">WhatsApp: +8801807578888</a>
               <a href="mailto:info@mystudybuddy.com">info@mystudybuddy.com</a>
               <span style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4', marginTop: '6px', display: 'block' }}>
                 📍 2nd Floor, 85/A, Saleh Nur Bhaban, Chatteshwari Road, Chattogram 4203
