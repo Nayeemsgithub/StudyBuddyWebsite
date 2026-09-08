@@ -902,28 +902,13 @@ export default function App() {
 
   const branchOffices = [
     {
-      city: 'Dhaka Corporate Office',
-      tag: 'Headquarters',
-      address: 'Suite 2B, Level 2, House #18, Road #15, Block #D, Banani, Dhaka 1213, Bangladesh.',
+      city: 'Chattogram Headquarters',
+      tag: 'Official Counseling Office',
+      address: '2nd Floor, 85/A, Saleh Nur Bhaban, Chatteshwari Road, Chattogram, Chattogram 4203',
       phone: '+88 01675 516 856',
-      email: 'dhaka@studybuddy.com',
+      email: 'info@mystudybuddy.com',
       hours: 'Sat - Thu: 10:00 AM - 7:00 PM',
-    },
-    {
-      city: 'Chattogram Branch Office',
-      tag: 'Regional Branch',
-      address: '2nd Floor, 85/A, Saleh Noor Bhaban, Chatteshwari Road, Chawkbazar, Chattogram, Bangladesh.',
-      phone: '+88 01332 564 490',
-      email: 'chattogram@studybuddy.com',
-      hours: 'Sat - Thu: 10:00 AM - 7:00 PM',
-    },
-    {
-      city: 'Malaysia Liaison Desk',
-      tag: 'International Support',
-      address: 'Greater Kuala Lumpur, Malaysia (Direct Student Care & Campus Relocation Assistance).',
-      phone: '+60 18215 5027',
-      email: 'malaysia@studybuddy.com',
-      hours: 'Mon - Fri: 9:00 AM - 6:00 PM (MYT)',
+      image: '/chattogram-office.webp',
     },
   ];
 
@@ -980,7 +965,7 @@ export default function App() {
               <li className="sb-nav-item"><a href="#study-destinations">Destinations</a></li>
               <li className="sb-nav-item"><a href="#why-choose-us">Why StudyBuddy</a></li>
               <li className="sb-nav-item"><a href="#process-roadmap">Application Process</a></li>
-              <li className="sb-nav-item"><a href="#branch-offices">Our Offices</a></li>
+              <li className="sb-nav-item"><a href="#branch-offices">Our Office</a></li>
               <li className="sb-nav-item"><a href="#faq-section">Student FAQ</a></li>
             </ul>
           </nav>
@@ -1026,7 +1011,7 @@ export default function App() {
                 <li><a href="#study-destinations" onClick={() => setMobileMenuOpen(false)}>Destinations</a></li>
                 <li><a href="#why-choose-us" onClick={() => setMobileMenuOpen(false)}>Why StudyBuddy</a></li>
                 <li><a href="#process-roadmap" onClick={() => setMobileMenuOpen(false)}>Application Process</a></li>
-                <li><a href="#branch-offices" onClick={() => setMobileMenuOpen(false)}>Our Offices</a></li>
+                <li><a href="#branch-offices" onClick={() => setMobileMenuOpen(false)}>Our Office</a></li>
                 <li><a href="#faq-section" onClick={() => setMobileMenuOpen(false)}>Student FAQ</a></li>
                 <li className="sb-mobile-menu-cta">
                   <button
@@ -1626,33 +1611,87 @@ export default function App() {
           </div>
         </section>
 
-        {/* Multi-Branch Office Network */}
+        {/* Dedicated Counseling Office Showcase */}
         <section className="sb-branches-section" id="branch-offices">
           <div className="sb-section-inner">
             <div className="sb-section-head-center">
-              <span className="sb-eyebrow-brand">OUR OFFICES</span>
-              <h2 className="sb-title-brand">Visit our dedicated counseling offices.</h2>
+              <span className="sb-eyebrow-brand">VISIT OUR OFFICE</span>
+              <h2 className="sb-title-brand">Visit our dedicated counseling office.</h2>
               <p className="sb-lead-text">
-                Speak face-to-face with our certified academic advisors in Dhaka and Chattogram or connect with our international support team in Malaysia.
+                Speak face-to-face with our certified academic advisors at our Chattogram headquarters for personalized guidance on university admissions, scholarships, and visas.
               </p>
             </div>
 
-            <div className="sb-branches-grid">
-              {branchOffices.map((b, idx) => (
-                <div key={idx} className="sb-branch-card">
-                  <div>
-                    <span className="sb-branch-tag">{b.tag}</span>
-                    <h3>{b.city}</h3>
-                    <p>{b.address}</p>
+            <motion.div
+              whileHover={{ y: -4 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 20 }}
+              className="sb-office-showcase"
+            >
+              <div className="sb-office-img-wrap">
+                <img
+                  src="/chattogram-office.webp"
+                  alt="Study Buddy Physical Office Signboard at Saleh Nur Bhaban, Chatteshwari Road, Chattogram"
+                  className="sb-office-photo"
+                  loading="lazy"
+                  width="600"
+                  height="400"
+                />
+                <div className="sb-office-badge-overlay">
+                  <span aria-hidden="true">📍</span>
+                  <span>Physical Office &amp; Signboard</span>
+                </div>
+              </div>
+
+              <div className="sb-office-details">
+                <div>
+                  <span className="sb-branch-tag">Official Headquarters</span>
+                  <h3>Chattogram Counseling Office</h3>
+                  <p className="sb-office-address">
+                    <strong>Address:</strong> 2nd Floor, 85/A, Saleh Nur Bhaban, Chatteshwari Road, Chattogram, Chattogram 4203
+                  </p>
+                </div>
+
+                <div className="sb-office-meta-list">
+                  <div className="sb-office-meta-item">
+                    <span aria-hidden="true">📞</span>
+                    <span><strong>Hotline:</strong> +88 01675 516 856</span>
                   </div>
-                  <div className="sb-branch-meta">
-                    <span><span aria-hidden="true">📞</span> <strong>Hotline:</strong> {b.phone}</span>
-                    <span><span aria-hidden="true">✉️</span> <strong>Email:</strong> {b.email}</span>
-                    <span><span aria-hidden="true">⏰</span> <strong>Hours:</strong> {b.hours}</span>
+                  <div className="sb-office-meta-item">
+                    <span aria-hidden="true">💬</span>
+                    <span><strong>WhatsApp:</strong> +88 01675 516 856</span>
+                  </div>
+                  <div className="sb-office-meta-item">
+                    <span aria-hidden="true">✉️</span>
+                    <span><strong>Email:</strong> info@mystudybuddy.com</span>
+                  </div>
+                  <div className="sb-office-meta-item">
+                    <span aria-hidden="true">⏰</span>
+                    <span><strong>Hours:</strong> Saturday – Thursday: 10:00 AM – 7:00 PM</span>
                   </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="sb-office-action-row">
+                  <a
+                    href="https://wa.me/8801675516856"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-gold-brand"
+                    style={{ padding: '10px 20px', fontSize: '13.5px' }}
+                  >
+                    💬 Message on WhatsApp →
+                  </a>
+                  <a
+                    href="https://maps.google.com/?q=85/A+Saleh+Nur+Bhaban+Chatteshari+Road+Chattogram+4203"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline-brand"
+                    style={{ padding: '9px 18px', fontSize: '13px' }}
+                  >
+                    🗺️ Open in Google Maps
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </section>
 
@@ -1802,12 +1841,12 @@ export default function App() {
                 <div className="sb-chat-badge">DIRECT ADVISORY DESK</div>
                 <h3>Prefer Instant WhatsApp Consultation?</h3>
                 <p>
-                  Connect directly with our Dhaka and Chattogram advisory desks for immediate guidance on intakes, deadlines, and document requirements.
+                  Connect directly with our Chattogram counseling headquarters for immediate guidance on intakes, deadlines, and document requirements.
                 </p>
                 <div className="sb-direct-features">
                   <span><span aria-hidden="true">⚡</span> Instant Eligibility Review</span>
-                  <span><span aria-hidden="true">👨‍👩‍👧</span> Parent &amp; Student Consultations</span>
-                  <span><span aria-hidden="true">🇧🇩</span> Dhaka Banani &amp; Chattogram Support</span>
+                  <span><span aria-hidden="true">👨‍👩‍👧</span> In-Person &amp; Online Consultations</span>
+                  <span><span aria-hidden="true">🇧🇩</span> Chatteshwari Road, Chattogram 4203</span>
                 </div>
                 <div className="sb-chat-actions">
                   <a
@@ -1861,15 +1900,17 @@ export default function App() {
               <a href="#book-counseling">Free Counseling</a>
               <a href="#study-destinations">Country Blueprints</a>
               <a href="#process-roadmap">6-Stage Roadmap</a>
-              <a href="#branch-offices">Our Offices</a>
+              <a href="#branch-offices">Our Office</a>
               <a href="#faq-section">Student FAQ</a>
             </div>
             <div className="sb-footer-col">
               <h5>Direct Contact</h5>
-              <a href="tel:+8801675516856">Dhaka: +88 01675 516 856</a>
-              <a href="tel:+8801332564490">Chattogram: +88 01332 564 490</a>
-              <a href="https://wa.me/8801675516856" target="_blank" rel="noopener noreferrer">WhatsApp Advisory</a>
-              <a href="mailto:info@studybuddy.com">info@studybuddy.com</a>
+              <a href="tel:+8801675516856">Hotline: +88 01675 516 856</a>
+              <a href="https://wa.me/8801675516856" target="_blank" rel="noopener noreferrer">WhatsApp: +88 01675 516 856</a>
+              <a href="mailto:info@mystudybuddy.com">info@mystudybuddy.com</a>
+              <span style={{ fontSize: '12px', color: '#cbd5e1', lineHeight: '1.4', marginTop: '6px', display: 'block' }}>
+                📍 2nd Floor, 85/A, Saleh Nur Bhaban, Chatteshwari Road, Chattogram 4203
+              </span>
             </div>
           </div>
         </div>
