@@ -427,36 +427,32 @@ textarea:focus-visible {
 }
 
 .sb-hero-jumbo-title {
-  font-size: clamp(38px, 5.2vw, 62px);
+  font-size: clamp(38px, 5.2vw, 64px);
   font-weight: 800;
-  color: var(--color-primary);
-  line-height: 1.16;
+  color: #1a1a6e;
+  line-height: 1.18;
   margin-bottom: 24px;
   letter-spacing: -1.2px;
   text-align: center;
-  max-width: 890px;
+  max-width: 920px;
   position: relative;
-  z-index: 3;
+  z-index: 5;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
 }
 
 .sb-hero-highlight-phrase {
   position: relative;
   display: inline-block;
-  color: var(--color-accent);
+  color: #2D2D92;
   font-style: normal;
-  padding: 0 4px;
+  padding: 0 8px;
+  background: linear-gradient(180deg, transparent 60%, rgba(252, 185, 64, 0.42) 60%);
+  border-radius: 6px;
+  white-space: nowrap;
 }
 
 .sb-hero-highlight-phrase::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 4px;
-  width: 100%;
-  height: 10px;
-  background: rgba(252, 185, 64, 0.32);
-  border-radius: 4px;
-  z-index: -1;
+  display: none;
 }
 
 .sb-hero-lead-text {
@@ -590,20 +586,20 @@ textarea:focus-visible {
 }
 
 .sb-float-badge-1 {
-  top: 18%;
-  left: 4%;
+  top: 14%;
+  left: 2.5%;
 }
 
 .sb-float-badge-2 {
-  top: 24%;
-  right: 4%;
+  top: 14%;
+  right: 2.5%;
 }
 
 .sb-float-badge-icon {
   font-size: 16px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .sb-hero-float-badge {
     display: none;
   }
