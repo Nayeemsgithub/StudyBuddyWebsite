@@ -430,17 +430,73 @@ textarea:focus-visible {
   font-size: clamp(38px, 5.2vw, 62px);
   font-weight: 800;
   color: var(--color-primary);
-  line-height: 1.12;
-  margin-bottom: 22px;
+  line-height: 1.15;
+  margin-bottom: 24px;
   letter-spacing: -1.2px;
   text-align: center;
-  max-width: 860px;
+  max-width: 890px;
 }
 
-.sb-hero-jumbo-title em {
-  font-style: normal;
+.sb-hero-word {
+  display: inline-block;
+  margin-right: 0.26em;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.sb-hero-word:hover {
+  transform: translateY(-4px) scale(1.03);
+}
+
+.sb-hero-highlight-phrase {
+  position: relative;
+  display: inline-block;
   color: var(--color-accent);
-  background: linear-gradient(180deg, transparent 65%, rgba(252, 185, 64, 0.3) 65%);
+  background: linear-gradient(110deg, #FCB940 0%, #ffe299 40%, #FCB940 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: sbShimmerText 4.5s ease-in-out infinite;
+  font-style: normal;
+  padding-bottom: 4px;
+}
+
+@keyframes sbShimmerText {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.sb-hero-underline-svg {
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 12px;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sb-hero-underline-path {
+  stroke: var(--color-accent);
+  stroke-width: 4;
+  stroke-linecap: round;
+  fill: none;
+  stroke-dasharray: 450;
+  stroke-dashoffset: 450;
+  animation: sbDrawUnderline 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+}
+
+@keyframes sbDrawUnderline {
+  to {
+    stroke-dashoffset: 0;
+  }
 }
 
 .sb-hero-lead-text {

@@ -1064,7 +1064,50 @@ export default function App() {
               </div>
 
               <h1 className="sb-hero-jumbo-title">
-                Your Buddy for <em>Global Study Journeys!</em>
+                <motion.span
+                  className="sb-hero-word"
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.15, ease: [0.2, 0.65, 0.3, 0.9] }}
+                >
+                  Your
+                </motion.span>
+                <motion.span
+                  className="sb-hero-word"
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.25, ease: [0.2, 0.65, 0.3, 0.9] }}
+                >
+                  Buddy
+                </motion.span>
+                <motion.span
+                  className="sb-hero-word"
+                  initial={{ opacity: 0, y: 25 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.35, ease: [0.2, 0.65, 0.3, 0.9] }}
+                >
+                  for
+                </motion.span>
+                <motion.span
+                  className="sb-hero-highlight-phrase"
+                  initial={{ opacity: 0, scale: 0.95, y: 25 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.45, ease: [0.2, 0.65, 0.3, 0.9] }}
+                >
+                  Global Study Journeys!
+                  <svg
+                    className="sb-hero-underline-svg"
+                    viewBox="0 0 320 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M3 10C65 3 200 1 317 7"
+                      className="sb-hero-underline-path"
+                    />
+                  </svg>
+                </motion.span>
               </h1>
 
               <p className="sb-hero-lead-text">
