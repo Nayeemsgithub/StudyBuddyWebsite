@@ -846,27 +846,57 @@ export default function App() {
   const testimonials = [
     {
       name: 'Anwar Hossain Sumon',
+      program: 'BSc in Information Technology',
       university: 'UNITAR International University, Malaysia',
       quote:
-        '“I was so lost after my bad result in HSC. I thought I had no options left, then Study Buddy came as my guide. They counseled me and helped me from beginning to end. I love how they treat me as a true buddy.”',
+        '“I was so lost after my bad result in HSC. I thought I had no other options left, then Study Buddy came as my guide. They counseled me and helped me from beginning to end in my study abroad journey to Malaysia. I love how they treat me as a true buddy.”',
       image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
-      badge: 'Visa Issued 2025',
+      badge: '🎓 HSC Setback Overcome · Visa Issued',
     },
     {
       name: 'Zaber Hossain',
+      program: 'Master of Information Technology',
       university: 'La Trobe University, Australia',
       quote:
-        '“After getting rejected from USA, I was hopeless. Study Buddy found out what would be best for my profile and helped me like a very close one. Kudos to the Study Buddy team for securing my Australian visa!”',
+        '“After getting rejected from the USA, I was hopeless and got admitted into a private university in Bangladesh. But I always dreamt of studying abroad. Study Buddy found out what would be best for my profile and helped me like a very close one. Kudos to the Study Buddy team for securing my Australian Subclass 500 visa!”',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
-      badge: 'Subclass 500 Granted',
+      badge: '🇦🇺 USA Refusal Solved · Visa Granted',
     },
     {
       name: 'Maher Kamal',
+      program: 'BEng in Mechanical Engineering',
       university: 'Universiti Teknologi Malaysia (UTM)',
       quote:
-        '“My financial profile was modest, but Study Buddy showed me how Malaysia could turn into a career-changing opportunity. I grabbed it and I am thrilled that I trusted their advice.”',
+        '“From my early childhood, I wanted to study abroad. But my financial profile was not up to mark for Western tuition. Study Buddy suggested Malaysia and showed me how it could turn into a career-changing opportunity. I grabbed it and I am thrilled that I trusted their advice.”',
       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
-      badge: 'Scholarship Awarded',
+      badge: '💰 Budget Solved · 50% Scholarship',
+    },
+    {
+      name: 'Nusrat Jahan',
+      program: 'MSc in International Business Management',
+      university: 'University of Hertfordshire, United Kingdom',
+      quote:
+        '“Having a 4-year study gap after my BBA, other agencies told me UK admission was impossible without high IELTS. Study Buddy handled my SOP, prepared my university interview, and secured my CAS letter in under 10 days with zero hidden service charges.”',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
+      badge: '🇬🇧 4-Yr Study Gap Accepted · CAS Issued',
+    },
+    {
+      name: 'Rafiqul Islam',
+      program: 'Bachelor of Software Engineering',
+      university: 'University of Auckland, New Zealand',
+      quote:
+        '“The New Zealand student visa financial matrix is strict, but Study Buddy audited every single bank document 28 days before submission. My visa was approved on the first attempt with 3 years of post-study work rights.”',
+      image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
+      badge: '🇳🇿 1st Attempt Visa Approval · 3-Yr PSW',
+    },
+    {
+      name: 'Sadia Chowdhury',
+      program: 'MBBS in Clinical Medicine',
+      university: 'Zhejiang University, China',
+      quote:
+        '“Medical admission abroad felt daunting until Study Buddy guided me to CSC and provincial scholarships in China. I secured a 100% tuition waiver with full on-campus international student accommodation.”',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
+      badge: '🇨🇳 100% CSC Tuition Waiver Awarded',
     },
   ];
 
@@ -1564,25 +1594,33 @@ export default function App() {
 
             <div className="sb-testi-grid-brand">
               {testimonials.map((t, idx) => (
-                <div key={idx} className="sb-testi-card-brand">
+                <motion.div
+                  key={idx}
+                  whileHover={{ y: -6, scale: 1.02 }}
+                  transition={{ type: 'spring', stiffness: 280, damping: 20 }}
+                  className="sb-testi-card-brand"
+                >
+                  <div>
+                    <div className="sb-testi-badge">{t.badge}</div>
+                    <div className="sb-testi-stars">★★★★★ 5.0 Verified Student Review</div>
+                    <p className="sb-testi-quote">{t.quote}</p>
+                  </div>
                   <div className="sb-testi-header">
                     <img
                       className="sb-testi-avatar"
                       src={t.image}
                       alt={t.name}
                       loading="lazy"
-                      width="52"
-                      height="52"
+                      width="48"
+                      height="48"
                     />
                     <div>
                       <span className="sb-testi-name">{t.name}</span>
+                      <span className="sb-testi-program">{t.program}</span>
                       <span className="sb-testi-uni">{t.university}</span>
                     </div>
-                    <span className="sb-testi-badge">{t.badge}</span>
                   </div>
-                  <div className="sb-testi-stars">★★★★★ 5.0 Verified Review</div>
-                  <p className="sb-testi-quote">{t.quote}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
