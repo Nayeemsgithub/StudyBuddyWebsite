@@ -850,7 +850,7 @@ export default function App() {
       university: 'UNITAR International University, Malaysia',
       quote:
         '“I was so lost after my bad result in HSC. I thought I had no other options left, then Study Buddy came as my guide. They counseled me and helped me from beginning to end in my study abroad journey to Malaysia. I love how they treat me as a true buddy.”',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+      image: '/student-anwar.png',
       badge: '🎓 HSC Setback Overcome · Visa Issued',
     },
     {
@@ -859,7 +859,7 @@ export default function App() {
       university: 'La Trobe University, Australia',
       quote:
         '“After getting rejected from the USA, I was hopeless and got admitted into a private university in Bangladesh. But I always dreamt of studying abroad. Study Buddy found out what would be best for my profile and helped me like a very close one. Kudos to the Study Buddy team for securing my Australian Subclass 500 visa!”',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+      image: '/student-zaber.png',
       badge: '🇦🇺 USA Refusal Solved · Visa Granted',
     },
     {
@@ -868,35 +868,8 @@ export default function App() {
       university: 'Universiti Teknologi Malaysia (UTM)',
       quote:
         '“From my early childhood, I wanted to study abroad. But my financial profile was not up to mark for Western tuition. Study Buddy suggested Malaysia and showed me how it could turn into a career-changing opportunity. I grabbed it and I am thrilled that I trusted their advice.”',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80',
+      image: '/student-maher.png',
       badge: '💰 Budget Solved · 50% Scholarship',
-    },
-    {
-      name: 'Nusrat Jahan',
-      program: 'MSc in International Business Management',
-      university: 'University of Hertfordshire, United Kingdom',
-      quote:
-        '“Having a 4-year study gap after my BBA, other agencies told me UK admission was impossible without high IELTS. Study Buddy handled my SOP, prepared my university interview, and secured my CAS letter in under 10 days with zero hidden service charges.”',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80',
-      badge: '🇬🇧 4-Yr Study Gap Accepted · CAS Issued',
-    },
-    {
-      name: 'Rafiqul Islam',
-      program: 'Bachelor of Software Engineering',
-      university: 'University of Auckland, New Zealand',
-      quote:
-        '“The New Zealand student visa financial matrix is strict, but Study Buddy audited every single bank document 28 days before submission. My visa was approved on the first attempt with 3 years of post-study work rights.”',
-      image: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=400&q=80',
-      badge: '🇳🇿 1st Attempt Visa Approval · 3-Yr PSW',
-    },
-    {
-      name: 'Sadia Chowdhury',
-      program: 'MBBS in Clinical Medicine',
-      university: 'Zhejiang University, China',
-      quote:
-        '“Medical admission abroad felt daunting until Study Buddy guided me to CSC and provincial scholarships in China. I secured a 100% tuition waiver with full on-campus international student accommodation.”',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&q=80',
-      badge: '🇨🇳 100% CSC Tuition Waiver Awarded',
     },
   ];
 

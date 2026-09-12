@@ -1467,12 +1467,15 @@ html.lenis body {
 }
 
 .sb-testi-avatar {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid var(--color-accent);
+  object-position: top center;
+  border: 2.5px solid var(--color-accent);
+  box-shadow: 0 4px 12px rgba(45, 45, 146, 0.12);
   flex-shrink: 0;
+  background: #2D2D92;
 }
 
 .sb-testi-name {
